@@ -40,8 +40,86 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "SuccessNotification",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "BookingFactLoad",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-16.northeurope.logic.azure.com:443/workflows/d8ddfc22858049c190b06012df8412d2/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=I2rjxq8Bj04OCvqr02Kbp1HMWh9IkwKN0NxrEbAzvRY",
+					"body": {
+						"value": "{\n    \"to\": \"@{pipeline().parameters.to}\",\n    \"subject\": \"@{pipeline().parameters.subjectSuccess}\",\n    \"email\": \"@{pipeline().parameters.emailSuccess}\"\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "FailedNotification",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "BookingFactLoad",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-16.northeurope.logic.azure.com:443/workflows/d8ddfc22858049c190b06012df8412d2/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=I2rjxq8Bj04OCvqr02Kbp1HMWh9IkwKN0NxrEbAzvRY",
+					"body": {
+						"value": "{\n    \"to\": \"@{pipeline().parameters.to}\",\n    \"subject\": \"@{pipeline().parameters.subjectFailed}\",\n    \"email\": \"@{pipeline().parameters.emailFailed}\"\n}",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"parameters": {
+			"to": {
+				"type": "string",
+				"defaultValue": "amarendrakumbhar25@gmail.com"
+			},
+			"subjectSuccess": {
+				"type": "string",
+				"defaultValue": "Fintech Pipeline Execution - SUCCESS"
+			},
+			"emailSuccess": {
+				"type": "string",
+				"defaultValue": "Fintech Pipeline Execution is successfully completed"
+			},
+			"subjectFailed": {
+				"type": "string",
+				"defaultValue": "Fintech Pipeline Execution - FAILED"
+			},
+			"emailFailed": {
+				"type": "string",
+				"defaultValue": "Fintech Pipeline Execution is Failed"
+			}
+		},
 		"annotations": []
 	}
 }
