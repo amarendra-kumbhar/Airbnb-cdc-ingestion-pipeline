@@ -1,0 +1,47 @@
+{
+	"name": "AirBnB-CDC-Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "CustomerDimLoad",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LoadCustomerDim",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "BookingFactLoad",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CustomerDimLoad",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LoadBookingFact",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": []
+	}
+}
