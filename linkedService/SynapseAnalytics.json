@@ -1,0 +1,14 @@
+{
+	"name": "SynapseAnalytics",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDW",
+		"typeProperties": {
+			"server": "synapseworkspaceforproject.sql.azuresynapse.net",
+			"database": "airbnb_dwh",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SystemAssignedManagedIdentity"
+		}
+	}
+}
