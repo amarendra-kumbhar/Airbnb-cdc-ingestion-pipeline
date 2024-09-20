@@ -105,19 +105,19 @@
 			},
 			"subjectSuccess": {
 				"type": "string",
-				"defaultValue": "Fintech Pipeline Execution - SUCCESS"
+				"defaultValue": "AirBnB CDC Pipeline Execution - SUCCESS"
 			},
 			"emailSuccess": {
 				"type": "string",
-				"defaultValue": "Fintech Pipeline Execution is successfully completed"
+				"defaultValue": "AirBnB CDC Pipeline Execution is successfully completed"
 			},
 			"subjectFailed": {
 				"type": "string",
-				"defaultValue": "Fintech Pipeline Execution - FAILED"
+				"defaultValue": "AirBnB CDC Pipeline Execution - FAILED"
 			},
 			"emailFailed": {
 				"type": "string",
-				"defaultValue": "Fintech Pipeline Execution is Failed"
+				"defaultValue": "AirBnB CDC Pipeline Execution is Failed"
 			}
 		},
 		"annotations": []
