@@ -1,0 +1,9 @@
+{
+	"name": "airbnbdatapipeline",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "979560ac-9f58-4f53-9c66-167cb640cbbb",
+		"tenantId": "77c80631-0e24-4ae6-9491-79d0226e9ea1"
+	}
+}
